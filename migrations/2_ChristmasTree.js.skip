@@ -1,0 +1,10 @@
+var ChristmasTree = artifacts.require("./ChristmasTree.sol");
+
+module.exports = function(deployer, network) {
+    console.log(network);
+    if(network === "ropsten") {
+
+    } else if(network === "development") {
+        deployer.deploy(ChristmasTree);
+    }
+};

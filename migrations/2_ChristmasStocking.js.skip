@@ -1,0 +1,15 @@
+var ChristmasStocking = artifacts.require("./ChristmasStocking.sol");
+var GiveMeStocking = artifacts.require("./GiveMeStocking.sol");
+
+module.exports = function(deployer, network) {
+    console.log(network);
+    if(network === "ropsten") {
+        deployer.deploy(GiveMeStocking, "0x408f56c4541bd00ec836102d06f7ee6a2a820678");
+    } else if(network === "development") {
+        deployer.then(() => {
+            return deployer.deploy(ChristmasStocking);
+        }).then(instance => {
+            return deployer.deploy(GiveMeStocking, instance.address);
+        });
+    }
+};
